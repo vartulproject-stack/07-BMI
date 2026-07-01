@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 7/100 - BMI Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+    .container {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+    input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background: #22c55e;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #16a34a;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .tag {
+      color: #38bdf8;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>BMI Calculator 💪</h2>
+    <p class="tag">Day 7/100 of #100DaysOfCode</p>
+    
+    <input type="number" id="weight" placeholder="Weight in kg">
+    <br>
+    <input type="number" id="height" placeholder="Height in cm">
+    <br>
+    
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateBMI() {
+      let weight = document.getElementById("weight").value;
+      let height = document.getElementById("height").value / 100; // cm to m
+      
+      if(weight === "" || height === "") {
+        document.getElementById("result").innerText = "Bhai weight aur height daal pehle 😭";
+        return;
+      }
+      
+      let bmi = weight / (height * height);
+      
+      let category = "";
+      if (bmi < 18.5) { 
+        category = "Underweight 🥺"; 
+      }
+      else if (bmi < 25) { 
+        category = "Normal ✅💚"; 
+      }
+      else if (bmi < 30) { 
+        category = "Overweight ⚠️"; 
+      }
+      else { 
+        category = "Obese 🚨"; 
+      }
+      
+      document.getElementById("result").innerText = 
+        `Your BMI: ${bmi.toFixed(2)} - ${category}`;
+    }
+  </script>
+</body>
+</html>
